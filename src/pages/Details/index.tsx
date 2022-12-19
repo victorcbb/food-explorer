@@ -10,7 +10,7 @@ import { Ingredient } from "../../components/Ingredient"
 import { Amount } from "../../components/Amount"
 import { Button } from "../../components/Button"
 
-import dishesImg from "/dishes/parma-toast.png"
+import dishesImg from "/dishes/torradas-de-parma.png"
 
 export function Details() {
   const navigate = useNavigate()

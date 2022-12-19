@@ -1,7 +1,8 @@
 import { InputContainer } from "./styles"
 import InputMask from 'react-input-mask'
+import { HTMLProps } from "react"
 
-interface InputProps {
+interface InputProps extends HTMLProps<HTMLInputElement> {
   label: string
   type: string
   placeholder: string
@@ -9,11 +10,11 @@ interface InputProps {
   maxLength?: number
 }
 
-export function Input({ label, placeholder, type, mask, maxLength }: InputProps) {
+export function Input({ label, placeholder, type, mask, maxLength, ...rest }: InputProps) {
   return (
     <InputContainer>
       {label}
-      <InputMask mask={mask} type={type} placeholder={placeholder} maxLength={maxLength} />
+      <InputMask mask={mask} type={type} placeholder={placeholder} maxLength={maxLength} {...rest} />
     </InputContainer>
   )
 }

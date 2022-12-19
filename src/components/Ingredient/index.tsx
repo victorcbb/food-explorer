@@ -1,6 +1,6 @@
 import { IngredientContainer } from "./styles"
 
-import breadImg from '/ingredients/bread.png'
+import breadImg from '/ingredients/pao.png'
 
 export function Ingredient() {
   return (

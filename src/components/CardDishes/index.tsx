@@ -4,7 +4,7 @@ import { CardDishesContainer } from "./styles"
 import { Amount } from "../Amount"
 import { Button } from "../Button"
 
-import dishesImg from "/dishes/parma-toast.png"
+import dishesImg from "/dishes/torradas-de-parma.png"
 
 export function CardDishes({ ...rest }) {
   return (

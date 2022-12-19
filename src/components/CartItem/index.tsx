@@ -1,6 +1,6 @@
 import { CartItemContainer, InfosCart } from "./styles"
 
-import DisheImg from "/dishes/parma-toast.png"
+import DisheImg from "/dishes/torradas-de-parma.png"
 
 export function CartItem() {
   return (

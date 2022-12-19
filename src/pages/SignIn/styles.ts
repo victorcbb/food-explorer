@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const SignInContainer = styled.div`
   width: 100%;
-  max-width: 1132px;
+  max-width: 1440px;
   height: 100vh;
 
   display: flex;
