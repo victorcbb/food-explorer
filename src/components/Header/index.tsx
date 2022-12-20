@@ -5,8 +5,15 @@ import { MyRequest } from "../MyRequest"
 import { SearchInpit } from "../SearchInput"
 
 import logoImage from '../../assets/logo.svg'
+import { useAuth } from "../../hook/useAuth"
 
 export function Header() {
+  const { signOut } = useAuth()
+
+  function handleSignOut() {
+    signOut()
+  }
+
   return (
     <HeaderContainer>
       <Content>
@@ -21,7 +28,7 @@ export function Header() {
           <MyRequest />
         </SearchContent>
 
-        <LogOut>
+        <LogOut onClick={handleSignOut}>
           <SignOut size={32} />
         </LogOut>
       </Content>

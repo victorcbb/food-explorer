@@ -8,12 +8,14 @@ import dishesImg from "/dishes/torradas-de-parma.png"
 
 export function CardDishes({ ...rest }) {
   return (
-    <CardDishesContainer {...rest}>
+    <CardDishesContainer>
       <HeartStraight size={32} />
-      <img src={dishesImg} alt="" />
-      <strong>Torradas de Parma &gt;</strong>
-      <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
-      <span>R$ 25,97</span>
+      <a href="" {...rest}>
+        <img src={dishesImg} alt="" />
+        <strong>Torradas de Parma &gt;</strong>
+        <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
+        <span>R$ 25,97</span>
+      </a>
       <div>
        <Amount />
        <Button type="button" title="incluir" />
