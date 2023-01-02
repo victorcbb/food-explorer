@@ -1,7 +1,16 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react"
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react"
 import { toast } from 'react-toastify'
 
+import { produce } from "immer"
+
+import { IProducts } from "../pages/Home"
 import { api } from "../services/api"
+
+interface ICartItems extends IProducts {
+  userId: string
+  quantity: number
+  createdAt: Date
+}
 
 interface IUser {
   id?: string
@@ -19,8 +28,16 @@ interface IData {
 
 interface AuthContextType {
   user: IUser
-  signIn: ({ email, password}: IUser) => Promise<void>
+  signIn: ({ email, password }: IUser) => Promise<void>
   signOut: () => void
+  cartQuantity: number
+  addProductToCart: (product: ICartItems) => void
+  search: string
+  setSearch: Dispatch<SetStateAction<string>>
+  cartItemsTotalPrice: number
+  filteredCartOfUser: ICartItems[]
+  removeProductCard: (cartItemId: string) => void
+  cleanCartItems: () => void
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -29,21 +46,82 @@ interface AuthProviderProps {
   children: ReactNode
 }
 
-function AuthProvider ({ children }: AuthProviderProps) {
+function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<IData>({} as IData)
   const [search, setSearch] = useState("")
+  const [cartItems, setCartItems] = useState<ICartItems[]>(() => {
+    const storedCartItems = localStorage.getItem("@foodexplorer:cartItems")
+    if (storedCartItems) {
+      const usersCart: ICartItems[] = JSON.parse(storedCartItems)
+
+      return usersCart;
+    }
+
+    return []
+  })
+
+  const filteredCartOfUser = cartItems.filter(
+    cartItem => cartItem.userId === data.user?.id
+  )
+
+  const cartQuantity = filteredCartOfUser.length
+
+  const cartItemsTotalPrice = filteredCartOfUser.reduce((total, cartItem) => {
+    return total + cartItem.price * cartItem.quantity
+  }, 0)
+
+  function addProductToCart(product: ICartItems) {
+    const filteredCartOfUser = cartItems.filter(
+      cartItem => cartItem.userId === data.user?.id
+    )
+
+    const productAlreadyExistsOnCart = filteredCartOfUser.findIndex(
+      cartItem => cartItem.id === product.id
+    )
+
+    const newProductOnCart = produce(filteredCartOfUser, (draft) => {
+      if (productAlreadyExistsOnCart < 0) {
+        draft.push(product)
+      } else {
+        draft[productAlreadyExistsOnCart].quantity += product.quantity
+      }
+    })
+
+    const newCart = [...cartItems, ...newProductOnCart]
+
+    setCartItems(newCart)
+  }
+
+  function removeProductCard(cartItemId: string) {
+    const filteredCartOfUser = cartItems.filter(
+      cartItem => cartItem.userId === data.user?.id
+    )
+    const removedProductOnList = filteredCartOfUser.filter(
+      cartItem => cartItem.id !== cartItemId
+    )
+
+    setCartItems(removedProductOnList)
+  }
+
+  function cleanCartItems() {
+    const cleanedCartUser = cartItems.filter(
+      cartItems => cartItems.userId !== data.user?.id
+    )
+
+    setCartItems(cleanedCartUser)
+  }
 
   async function signIn({ email, password }: IUser) {
     try {
-      const response = await api.post("/authenticate", { email, password})
+      const response = await api.post("/authenticate", { email, password })
       const { user, token } = response.data as IData
 
       localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
       localStorage.setItem("@foodexplorer:token", token)
 
       setData({ user, token })
-    } catch (error) {
-      if(error.message) {
+    } catch (error: any) {
+      if (error.message) {
         toast.error(error.response.data.message)
       } else {
         toast.error("Não foi possível logar com o usuário.")
@@ -57,6 +135,11 @@ function AuthProvider ({ children }: AuthProviderProps) {
 
     setData({} as IData)
   }
+
+  useEffect(() => {
+    localStorage.setItem("@foodexplorer:cartItems", JSON.stringify(cartItems))
+
+  }, [cartItems])
 
   useEffect(() => {
     const token = localStorage.getItem("@foodexplorer:token")
@@ -76,7 +159,15 @@ function AuthProvider ({ children }: AuthProviderProps) {
     <AuthContext.Provider value={{
       signOut,
       signIn,
-      user: data.user
+      user: data.user,
+      cartQuantity,
+      addProductToCart,
+      search,
+      setSearch,
+      cartItemsTotalPrice,
+      filteredCartOfUser,
+      removeProductCard,
+      cleanCartItems,
     }}>{children}</AuthContext.Provider>
   )
 }

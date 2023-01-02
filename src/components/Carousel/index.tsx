@@ -1,21 +1,17 @@
-import { useNavigate } from "react-router-dom"
-
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper"
-
-import "swiper/css"
 import "swiper/css/navigation"
+import "swiper/css"
 
 import { CarouselContainer } from "./styles"
 import { CardDishes } from "../CardDishes"
+import { IProducts } from "../../pages/Home"
 
-export function Carousel() {
+interface CarouselProps {
+  products: IProducts[]
+}
 
-  const navigate = useNavigate()
-
-  function handleDetails() {
-    navigate('/details/1')
-  }
+export function Carousel({ products }: CarouselProps) {
 
   return (
     <CarouselContainer>
@@ -26,19 +22,14 @@ export function Carousel() {
         modules={[Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <CardDishes onClick={handleDetails} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDishes onClick={handleDetails} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDishes onClick={handleDetails} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDishes onClick={handleDetails} />
-        </SwiperSlide>
-
+        {
+          products &&
+          products.map(product => (
+            <SwiperSlide key={product.id}>
+              <CardDishes product={product} />
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </CarouselContainer>
   )

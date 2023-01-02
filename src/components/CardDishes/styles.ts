@@ -27,13 +27,16 @@ export const CardDishesContainer = styled.div`
       cursor: pointer;
     };
 
-  a {
+  > button {
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
+    background: transparent;
+    border: none;
 
     cursor: pointer;
 

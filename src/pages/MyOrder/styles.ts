@@ -50,7 +50,7 @@ export const Cart = styled.ul`
   list-style: none;
 
   width: 27.75rem;
-  max-height: 26.75rem;
+  height: 26.75rem;
   overflow-y: auto;
   overflow-x: hidden;
   

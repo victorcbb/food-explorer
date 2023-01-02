@@ -27,6 +27,10 @@ export const ButtonContainer = styled.button<HTMLProps<HTMLButtonElement>>`
     filter: brightness(140%);
   }
 
+  &:not(:disabled):active {
+    filter: brightness(40%);
+  }
+
   &:disabled {
     cursor: not-allowed;
   }

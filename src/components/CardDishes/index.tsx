@@ -4,21 +4,70 @@ import { CardDishesContainer } from "./styles"
 import { Amount } from "../Amount"
 import { Button } from "../Button"
 
-import dishesImg from "/dishes/torradas-de-parma.png"
+import { IProducts } from "../../pages/Home"
+import { useNavigate } from "react-router-dom"
+import { api } from "../../services/api"
+import { useAuth } from "../../hook/useAuth"
+import { useState } from "react"
 
-export function CardDishes({ ...rest }) {
+interface CardDishesProps {
+  product: IProducts
+}
+
+export function CardDishes({ product }: CardDishesProps) {
+  const [quantity, setQuantity] = useState(1)
+  const { user } = useAuth()
+  
+  const imageUrl = product.image ? `${api.defaults.baseURL}/files/${product.image}` : ""
+  const formatedPrice = Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(product.price / 100)
+
+  const { addProductToCart } = useAuth()
+  const navigate = useNavigate()
+
+  function handleIncrease() {
+    setQuantity(prevState => prevState + 1)
+  }
+
+  function handleDecrease() {
+    setQuantity(prevState => prevState - 1)
+  }
+
+  function handleAddToCart() {
+    if (typeof user.id === "string") {
+      const productToAdd = {
+        userId: user.id,
+        ...product,
+        quantity,
+        createdAt: new Date(),
+      }
+
+      addProductToCart(productToAdd)
+    }
+  }
+
+  function handleNavigate(id: string) {
+    navigate(`/details/${id}`)
+  }
+
   return (
     <CardDishesContainer>
       <HeartStraight size={32} />
-      <a href="" {...rest}>
-        <img src={dishesImg} alt="" />
-        <strong>Torradas de Parma &gt;</strong>
-        <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
-        <span>R$ 25,97</span>
-      </a>
+      <button onClick={() => handleNavigate(product.id)}>
+        <img src={imageUrl} alt="" />
+        <strong>{product.name} &gt;</strong>
+        <p>{product.description}</p>
+        <span>{formatedPrice}</span>
+      </button>
       <div>
-       <Amount />
-       <Button type="button" title="incluir" />
+        <Amount 
+          onIncrease={handleIncrease}
+          onDecrease={handleDecrease}
+          quantity={quantity}
+        />
+        <Button type="button" title="incluir" onClick={handleAddToCart} />
       </div>
     </CardDishesContainer>
   )

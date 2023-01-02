@@ -1,17 +1,38 @@
+import { useAuth } from "../../hook/useAuth"
+import { api } from "../../services/api"
 import { CartItemContainer, InfosCart } from "./styles"
 
-import DisheImg from "/dishes/torradas-de-parma.png"
+interface CardItemProps {
+  id: string
+  name: string
+  price: number
+  quantity: number
+  image: string
+}
 
-export function CartItem() {
+export function CartItem({ id, name, price, quantity, image }: CardItemProps) {
+  const { removeProductCard } = useAuth()
+
+  const imageUrl = image ? `${api.defaults.baseURL}/files/${image}` : ""
+
+  const formatedPrice = Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(price / 100)
+
+  function handleRemoveItem() {
+    removeProductCard(id)
+  }
+
   return (
     <CartItemContainer>
-      <img src={DisheImg} alt="" />
+      <img src={imageUrl} alt="" />
       <div>
         <InfosCart>
-          <strong>1 x Torradas de Parma</strong>
-          <span>R$ 25,97</span>
+          <strong>{quantity} x {name}</strong>
+          <span>{formatedPrice}</span>
         </InfosCart>
-        <button>Excluir</button>
+        <button type="button" onClick={handleRemoveItem}>Excluir</button>
       </div>
     </CartItemContainer>
   )

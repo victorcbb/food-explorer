@@ -6,24 +6,28 @@ import { SearchInpit } from "../SearchInput"
 
 import logoImage from '../../assets/logo.svg'
 import { useAuth } from "../../hook/useAuth"
+import { Link, useNavigate } from "react-router-dom"
 
 export function Header() {
   const { signOut } = useAuth()
 
+  const navigate = useNavigate()
+
   function handleSignOut() {
     signOut()
+    navigate("/")
   }
 
   return (
     <HeaderContainer>
       <Content>
-        <div>
+        <Link to ="/">
           <img src={logoImage} alt="losangolo azul" />
           <strong>food explorer</strong>
-        </div>
+        </Link>
 
         <SearchContent>
-          <a href="#">Meus favorito</a>
+          <Link to="#">Meus favorito</Link>
           <SearchInpit />
           <MyRequest />
         </SearchContent>

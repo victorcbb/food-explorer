@@ -22,7 +22,7 @@ export const Content = styled.div`
   align-items: center;
   gap: 2.3125rem;
 
-  > div:first-child {
+  > a:first-child {
     width: fit-content;
 
     display: flex;
@@ -38,6 +38,7 @@ export const Content = styled.div`
       font-weight: 700;
       font-size: 1.5625rem;
       line-height: 1.8125rem;
+      color: ${({ theme }) =>  theme.white}
     }
   };
 `

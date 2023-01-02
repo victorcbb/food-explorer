@@ -40,25 +40,26 @@ export const Infos = styled.div`
   h1 {
     font-family: 'Poppins';
     font-weight: 500;
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 140%;
   };
 
-  p {
+  > span {
     width: 37.5rem;
 
     font-family: 'Poppins';
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 1.5rem;
     line-height: 140%;
-    margin-top: 8px;
+    margin-top: .5rem;
   };
 
   > div {
-    margin-top: 32px;
+    margin-top: 2rem;
 
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
   }
 `
 
@@ -71,7 +72,7 @@ export const Includes = styled.section`
 
   span {
     font-family: 'Roboto';
-    font-size: 32px;
+    font-size: 2rem;
     line-height: 160%;
     text-align: center;
 
@@ -83,6 +84,6 @@ export const Includes = styled.section`
 
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 1.5rem;
   }
 `

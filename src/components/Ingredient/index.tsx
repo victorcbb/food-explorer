@@ -2,11 +2,16 @@ import { IngredientContainer } from "./styles"
 
 import breadImg from '/ingredients/pao.png'
 
-export function Ingredient() {
+interface IngredientProps {
+  name: string
+  image: string
+}
+
+export function Ingredient({ name, image }: IngredientProps) {
   return (
     <IngredientContainer>
-      <img src={breadImg} alt="" />
-      <span>pão</span>
+      <img src={`/ingredients/${image}`} alt="" />
+      <span>{name}</span>
     </IngredientContainer>
   )
 }
