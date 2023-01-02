@@ -26,6 +26,23 @@ export const Content = styled.main`
     font-size: 2rem;
     line-height: 140%;
   }
+
+  > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    margin: 2rem auto 0;
+    color: ${({ theme }) => theme["Blue-750"]};
+
+    transition: 0.5s all;
+
+    &:hover {
+      color: ${({ theme }) => theme["Blue-500"]};
+    }
+  }
 `
 
 export const Banner = styled.div`

@@ -1,4 +1,4 @@
-import { Content, Dot, OrderAdminContainer, Select, TableWrapper } from "./styles"
+import { Content, OrderAdminContainer, TableWrapper } from "./styles"
 
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"

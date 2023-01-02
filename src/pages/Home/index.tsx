@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { PlusCircle } from "phosphor-react"
+import { Link } from "react-router-dom"
 
 import { Header } from "../../components/Header"
 import { Banner, Content, HomeContainer } from "./styles"
@@ -26,7 +28,7 @@ export interface IProducts {
 
 export function Home() {
   const [products, setProducts] = useState<IProducts[]>([])
-  const { search } = useAuth()
+  const { search, user } = useAuth()
 
   const main = products.filter(product => product.category === "main")
   const dessert = products.filter(product => product.category === "dessert")
@@ -78,6 +80,14 @@ export function Home() {
               <h2>Bebidas</h2>
               <Carousel products={drink} />
             </>
+          }
+
+          {
+            user.role === 'ADMIN' &&
+            <Link to="/editdishe">
+              <PlusCircle size={96} weight="duotone" />
+              ADICIONAR PRODUTO
+            </Link>
           }
         </Content>
         <Footer />

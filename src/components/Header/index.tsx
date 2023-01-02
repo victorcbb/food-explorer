@@ -9,7 +9,7 @@ import { useAuth } from "../../hook/useAuth"
 import { Link, useNavigate } from "react-router-dom"
 
 export function Header() {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
 
   const navigate = useNavigate()
 
@@ -27,7 +27,13 @@ export function Header() {
         </Link>
 
         <SearchContent>
-          <Link to="#">Meus favorito</Link>
+          {
+            user.role === "ADMIN" ?
+            <Link to="/orderadmin">Todos pedidos</Link>
+            :
+            <Link to="#">Meus favorito</Link>
+
+          }
           <SearchInpit />
           <MyRequest />
         </SearchContent>
