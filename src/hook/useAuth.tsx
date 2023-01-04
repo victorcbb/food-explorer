@@ -87,20 +87,31 @@ function AuthProvider({ children }: AuthProviderProps) {
       }
     })
 
-    const newCart = [...cartItems, ...newProductOnCart]
+    const cartFilteredWithoutCurrentUser = cartItems.filter(
+      cartItem => cartItem.userId !== data.user?.id
+    )
 
-    setCartItems(newCart)
+    cartFilteredWithoutCurrentUser.push(...newProductOnCart)
+
+    setCartItems(cartFilteredWithoutCurrentUser)
   }
 
   function removeProductCard(cartItemId: string) {
     const filteredCartOfUser = cartItems.filter(
       cartItem => cartItem.userId === data.user?.id
     )
+
     const removedProductOnList = filteredCartOfUser.filter(
       cartItem => cartItem.id !== cartItemId
     )
 
-    setCartItems(removedProductOnList)
+    const newCart = cartItems.filter(
+      cartItem => cartItem.userId !== data.user?.id
+    )
+    
+    newCart.push(...removedProductOnList)
+
+    setCartItems(newCart)
   }
 
   function cleanCartItems() {
