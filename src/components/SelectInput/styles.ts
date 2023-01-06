@@ -44,8 +44,7 @@ export const SelectContent = styled(Select.Content)`
 
   background-color: ${({ theme }) => theme["gray-900"]};
   border-radius: 5px;
-
-  `
+`
 
 export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
   display: flex;
@@ -54,7 +53,7 @@ export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
   color: ${({ theme }) => theme["gray-300"]};
   
   cursor: pointer;
-  `
+`
 
 export const SelectViewport = styled(Select.Viewport)``
 
@@ -63,7 +62,7 @@ export const SelectItem = styled(Select.Item)`
   align-items: center;
   
   cursor: pointer;
-  `
+`
 
 export const SelectItemText = styled(Select.ItemText)`
   display: flex;

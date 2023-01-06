@@ -1,3 +1,5 @@
+import { formatInTimeZone } from 'date-fns-tz'
+
 import { Content, OrderAdminContainer, TableWrapper } from "./styles"
 
 import { Footer } from "../../components/Footer"
@@ -55,7 +57,7 @@ export function OrderAdmin() {
                     <td>
                       <SelectInput />
                     </td>
-                    <td>{order.id}</td>
+                    <td>{("00000000" + order.id).slice(-8)}</td>
 
                     <td>
                       {
@@ -63,7 +65,7 @@ export function OrderAdmin() {
                       }
                     </td>
 
-                    <td>{order.createdAt}</td>
+                    <td>{formatInTimeZone(new Date(order.createdAt), "America/Chihuahua", "dd/MM ' às ' HH:mm")}</td>
                   </tr>
                 ))
               }

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import * as Select from '@radix-ui/react-select'
 
 export const EditDisheContainer = styled.div`
   width: 100%;
@@ -40,7 +41,7 @@ export const Form = styled.form`
   }
 
   div:first-child {
-    grid-template-columns: 14.3125rem 1fr;
+    grid-template-columns: 14.3125rem 1fr 14.3125rem;
   }
 
   div:nth-child(2) {
@@ -93,6 +94,7 @@ export const Form = styled.form`
     }
   }
 `
+
 export const InputFile = styled.div`
   width: 100%;
   display: flex;
@@ -120,6 +122,58 @@ export const InputFile = styled.div`
       line-height: 100%;
       color: ${({ theme }) => theme.white};
     }
+  }
+`
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap:.5rem;
+`
+
+export const SelectInput = styled(Select.Root)`
+  width: 100%;
+`
+
+export const SelectTrigger = styled(Select.Trigger)`  
+  height: 3.25rem;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 400;
+  font-size: .875rem;
+  line-height: 160%;
+  color: ${({ theme }) => theme["gray-300"]};
+  
+  background-color: transparent;
+  border: 1px solid ${({ theme }) => theme.white};
+  border-radius: 5px;
+  padding: 0 1rem;
+`
+
+export const SelectContent = styled(Select.Content)`
+  width: 14.3125rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+
+  background-color: ${({ theme }) => theme["gray-900"]};
+  border: 1px solid ${({ theme }) => theme.white};
+  border-radius: 5px;
+`
+
+export const SelectItem = styled(Select.Item)`
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: .875rem 1rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme["Blue-750"]};
   }
 `
 

@@ -5,18 +5,15 @@ import { Dot } from "../../pages/Order/styles"
 
 export function SelectInput() {
   return (
-    <SelectInputContainer>
+    <SelectInputContainer defaultValue="pending">
       <SelectTrigger>
-        <SelectValue placeholder="Etapa" />
+        <SelectValue placeholder='' />
         <SelectIcon>
           <CaretDown size={24} />
         </SelectIcon>
       </SelectTrigger>
       <SelectPortal>
         <SelectContent>
-          <Select.ScrollDownButton>
-            <CaretDown size={24} />
-          </Select.ScrollDownButton>
           <SelectViewport>
 
             <SelectItem value="pending">

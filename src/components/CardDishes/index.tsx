@@ -54,7 +54,7 @@ export function CardDishes({ product }: CardDishesProps) {
 
   return (
     <CardDishesContainer>
-      <HeartStraight size={32} />
+      <HeartStraight weight="regular" size={32} />
       <button onClick={() => handleNavigate(product.id)}>
         <img src={imageUrl} alt="" />
         <strong>{product.name} &gt;</strong>

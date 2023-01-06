@@ -132,7 +132,7 @@ export function BoxPayment() {
             {pending &&
               <>
                 <img src={waitingIcon} alt="" />
-                <strong>Aguardando pagamento confirmar!</strong>
+                <strong>Aguardando pagamento no caixa</strong>
               </>
             }
             {preparing &&
