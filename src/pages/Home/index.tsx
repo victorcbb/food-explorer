@@ -37,7 +37,7 @@ export function Home() {
   useEffect(() => {
     async function fetcchProducts() {
       const response = await api.get(`/products?name=${search}`)
-
+      
       setProducts(response.data)
     }
 

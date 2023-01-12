@@ -1,5 +1,5 @@
-import { Minus, Plus } from "phosphor-react";
-import { AmountContainer } from "./styles";
+import { Minus, Plus } from "phosphor-react"
+import { AmountContainer } from "./styles"
 
 interface AmountProps {
   onIncrease: () => void

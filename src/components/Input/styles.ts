@@ -7,6 +7,7 @@ export const InputContainer = styled.label`
   flex-direction: column;
   gap: .5rem;
 
+  
   input {
     padding: 1rem 0.875rem;
     background: transparent;
@@ -16,5 +17,9 @@ export const InputContainer = styled.label`
     font-family: 'Roboto', sans-serif;
     line-height: 100%;
     color: ${({ theme }) => theme.white};
+    
+    &.error {
+      border: 1px solid ${({ theme }) => theme["red-400"]};
+    }
   }
 `

@@ -33,5 +33,6 @@ export const ButtonContainer = styled.button<HTMLProps<HTMLButtonElement>>`
 
   &:disabled {
     cursor: not-allowed;
+    filter: grayscale(80%);
   }
 `

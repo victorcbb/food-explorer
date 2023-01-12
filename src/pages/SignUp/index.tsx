@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 import { toast, ToastContainer } from "react-toastify"
 import { ChangeEvent, FormEvent, useState } from "react"
+
 
 import { Form, SignUpContainer } from "./styles"
 import { Input } from "../../components/Input"
@@ -14,32 +15,53 @@ export function SignUp() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
-  function handleSignUp(event: FormEvent<HTMLFormElement>) {
+  function handleSignUp(event: FormEvent) {
     event.preventDefault()
 
     if (!name || !email || !password) {
       return toast.warn("Preencha todos os campos!")
     }
 
-    api.post("/users", { 
-      name, 
-      email, 
-      password 
+    if (/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+$/.test(name) === false) {
+      return toast.error("Nome com caracteres inválidos.")
+    }
+
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
+      return toast.error("E-mail com caracteres inválidos.")
+    }
+
+    if (/^[A-Za-z0-9]+$/.test(password) === false) {
+      return toast.error("Senha com caracteres inválidos.")
+    }
+
+    if (password.length < 3) {
+      return toast.error("A senha deve ter ao menos 3 caracteres.")
+    }
+    
+    setLoading(true)
+
+    api.post("/users", {
+      name,
+      email,
+      password
     })
-    .then(() => {
-      toast.success("Usuário cadastrado com sucesso!")
-      navigate("/")
-    })
-    .catch(error => {
-      if (error.response) {
-        toast.error(error.response.data.message)
-      } else {
-        toast.error("Não foi possível cadastrar.")
-      }
-    })
+      .then(() => {
+        toast.success("Usuário cadastrado com sucesso!")
+        navigate("/")
+      })
+      .catch(error => {
+        if (error.response) {
+          toast.error(error.response.data.message)
+        } else {
+          toast.error("Não foi possível cadastrar.")
+        }
+      })
+      
+      setLoading(false)
   }
 
   return (
@@ -72,22 +94,11 @@ export function SignUp() {
           onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
 
-        <Button title="Criar conta" type="submit"  />
-        
+        <Button title="Criar conta" type="submit" loading={loading} />
+
         <Link to="/">Já tenho uma conta</Link>
 
-        <ToastContainer 
-          position="top-right"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+
       </Form>
     </SignUpContainer>
   )

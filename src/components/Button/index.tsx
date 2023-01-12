@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { HTMLProps, ReactNode } from "react"
 import { ButtonContainer } from "./styles"
 
 interface ButtonProps {
@@ -6,11 +6,12 @@ interface ButtonProps {
   icon?: ReactNode
   type: "button" | "submit"
   onClick?: () => void
+  loading?: boolean
 }
 
-export function Button({ title, icon, ...rest }: ButtonProps) {
+export function Button({ title, icon, loading=false, ...rest }: ButtonProps) {
   return (
-    <ButtonContainer {...rest}>
+    <ButtonContainer {...rest} disabled={loading}>
       {icon}
       {title}
     </ButtonContainer>

@@ -6,7 +6,7 @@ interface IngredientItemProps {
   isNew: boolean
   onClick: MouseEventHandler<HTMLButtonElement>
   value: string
-  onChange: (e: ChangeEvent<any>) => void
+  onChange?: (e: ChangeEvent<any>) => void
 }
 
 export function IngredientItem({ 
