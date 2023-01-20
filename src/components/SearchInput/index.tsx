@@ -11,7 +11,11 @@ export function SearchInpit() {
     <SearchInputContainer>
       <MagnifyingGlass size={24} />
       <input 
-        placeholder="Busque pelas opções de pratos" 
+        placeholder={
+          window.innerWidth >= 500 ? 
+          "Busque pelas opções de pratos" : 
+          "Pesquisar"
+        } 
         type="text" 
         onChange={(e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}  
       />

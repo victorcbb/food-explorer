@@ -35,4 +35,9 @@ export const ButtonContainer = styled.button<HTMLProps<HTMLButtonElement>>`
     cursor: not-allowed;
     filter: grayscale(80%);
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    height: 2.5rem;
+  }
 `

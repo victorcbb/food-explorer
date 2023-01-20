@@ -31,4 +31,9 @@ export const SearchInputContainer = styled.div`
       color: ${({ theme }) => theme["gray-500"]}
     }
   }
+
+  @media (max-width: 500px) {
+    width: 10rem;
+    height: 2.5rem;
+  }
 `

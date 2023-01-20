@@ -12,6 +12,10 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+  }
 `
 
 export const Content = styled.div`
@@ -23,7 +27,6 @@ export const Content = styled.div`
 
   div {
     width: fit-content;
-
 
     display: flex;
     align-items: center;
@@ -47,5 +50,26 @@ export const Content = styled.div`
     font-size: .875rem;
     line-height: 1.125rem;
     color: ${({ theme }) => theme["gray-100"]}
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+    div {
+      width: 100%;
+      
+      img {
+        width: 1.25rem;
+        height: 1.25rem;
+      };
+
+      strong {
+        font-size: 1.125rem;
+      };
+
+      span {
+        font-size: .75rem;
+      }
+    }
   }
 `

@@ -2,10 +2,14 @@ import styled from "styled-components"
 import * as Select from '@radix-ui/react-select'
 
 export const SelectInputContainer = styled(Select.Root)`
+  overflow-y: hidden;
+
   width: 100%;
 `
 
-export const SelectTrigger = styled(Select.Trigger)`  
+export const SelectTrigger = styled(Select.Trigger)`
+  overflow-y: hidden;
+
   height: 3rem;
   width: 100%;
 
@@ -22,23 +26,25 @@ export const SelectTrigger = styled(Select.Trigger)`
   border: 1px solid ${({ theme }) => theme.white};
   border-radius: 5px;
   padding: 0 1rem;
+
+  span {
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
 `
 
 export const SelectValue = styled(Select.Value)`
-
 `
 
 export const SelectIcon = styled(Select.Icon)`
-
 `
 
 export const SelectPortal = styled(Select.Portal)`
-
 `
 
 export const SelectContent = styled(Select.Content)`
-  overflow: hidden;
-
   display: flex;
   align-items: center;
 
@@ -55,7 +61,8 @@ export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
   cursor: pointer;
 `
 
-export const SelectViewport = styled(Select.Viewport)``
+export const SelectViewport = styled(Select.Viewport)`
+`
 
 export const SelectItem = styled(Select.Item)`
   display: flex;

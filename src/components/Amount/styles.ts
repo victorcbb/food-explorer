@@ -22,4 +22,12 @@ export const AmountContainer = styled.div`
     line-height: 160%;
     color: ${({ theme }) => theme["gray-200"]};
   }
+
+  @media (max-width: 500px) {
+    gap: .75rem;
+
+    span {
+      font-size: 1rem;
+    }
+  }
 `

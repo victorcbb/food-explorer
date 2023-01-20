@@ -78,4 +78,33 @@ export const CardDishesContainer = styled.div`
     justify-content: center;
     gap: 1rem;
   }
+
+  @media (max-width: 500px) {
+    width: 16rem;
+    height: 25rem;
+
+    gap: .75rem;
+
+    > button {
+      gap: .75rem;
+
+      > img {
+        width: 8rem;
+        height: 8rem;
+      };
+
+      > strong {
+        font-size: 1rem;
+      }
+
+      > p {
+        width: 13.75rem;
+        font-size: .75rem;
+      };
+
+      > span {
+        font-size: 1.75rem;
+      };
+    }
+  }
 `

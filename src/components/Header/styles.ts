@@ -11,6 +11,11 @@ export const HeaderContainer = styled.header`
 
   display: flex;
   justify-content: center;
+
+  @media (max-width: 500px) {
+    height: 4rem;
+    padding: 0 0.75rem;
+  }
 `
 
 export const Content = styled.div`
@@ -41,6 +46,11 @@ export const Content = styled.div`
       color: ${({ theme }) =>  theme.white}
     }
   };
+
+  @media (max-width: 500px) {
+    justify-content: flex-start;
+    gap: 1rem;
+  }  
 `
 
 export const SearchContent = styled.div`
@@ -58,6 +68,10 @@ export const SearchContent = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: 500px) {
+    gap: 1rem;
   }
 `
 

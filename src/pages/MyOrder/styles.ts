@@ -10,9 +10,17 @@ export const MyOrderContainer = styled.div`
   "header"
   "main"
   "footer";
+
+  @media (max-width: 500px) {
+    height: 100%;
+    min-height: 100vh;
+    grid-template-rows: 4rem 1fr 7.75rem;
+  }
 `
 
 export const Content = styled.main`
+  height: 100%;
+  min-height: 100vh;
   grid-area: main;
 
   display: flex;
@@ -31,8 +39,6 @@ export const Content = styled.main`
   }
   
   > div {
-
-
     > span {
       width: 27.75rem;
       display: block;
@@ -44,7 +50,38 @@ export const Content = styled.main`
       line-height: 160%;
     }
   }
-  `
+
+  @media (max-width: 500px) {
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 0 1rem;
+    overflow-y: hidden;
+
+    h2 {
+      margin-bottom: 1.25rem;
+    }
+
+    > div {
+      height: 100%;
+      min-height: 28rem;
+      overflow-y: hidden;
+
+      span {
+        width: 22rem;
+      }
+    }
+
+    > div:nth-child(2) {
+      height: 100%;
+      min-height: 34rem;
+      width: 100%;
+      overflow-y: hidden;
+    }
+  }
+`
 
 export const Cart = styled.ul`
   list-style: none;
@@ -53,5 +90,9 @@ export const Cart = styled.ul`
   height: 26.75rem;
   overflow-y: auto;
   overflow-x: hidden;
-  
+
+  @media (max-width: 500px) {
+    height: fit-content;
+    overflow-y: hidden;
+  }
 `

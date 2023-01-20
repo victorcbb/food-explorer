@@ -20,7 +20,7 @@ export const Content = styled.main`
   height: calc(100vh - 14.25rem);
 
   margin: 0 auto;
-  padding-top: 2.125rem;
+  padding: 2.125rem 1rem 0;
 `
 
 export const TableWrapper = styled.div`
@@ -83,6 +83,10 @@ export const TableWrapper = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 500px) {
+    overflow-x: auto;
   }
 `
 

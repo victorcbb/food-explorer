@@ -3,6 +3,8 @@ import styled from "styled-components"
 export const CarouselContainer = styled.div`
   width: 100%;
   height: 32rem;
+  overflow-y: hidden;
+  padding: 0 1rem;
 
   .swiper {
     width: 100%;
@@ -66,5 +68,13 @@ export const CarouselContainer = styled.div`
     padding-right: 0.5rem;
 
     color: ${({ theme }) => theme.white};
+  }
+
+  @media (max-width: 500px) {
+    height: 27rem;
+
+    .swiper {
+      margin-top: 0;
+    }
   }
 `

@@ -34,6 +34,17 @@ export const CartItemContainer = styled.li`
     color: ${({ theme }) => theme["red-400"]};
     }
   }
+
+  @media (max-width: 500px) {
+    width: 22rem;
+    gap: .75rem;
+    padding-block: .625rem;
+
+    img {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
 `
 
 export const InfosCart = styled.div`
@@ -52,4 +63,13 @@ export const InfosCart = styled.div`
     margin-left: .625rem;
   };
 
+  @media (max-width: 500px) {
+    strong {
+      font-size: 1rem;
+    }
+
+    span {
+      margin-left: .375rem;
+    }
+  }
 `

@@ -43,6 +43,8 @@ export const BoxPaymentContainer = styled.div`
   }
 
   .TabsContent {
+    overflow-y: hidden;
+
     height: 22.75rem;
 
     flex-grow: 1;
@@ -78,6 +80,31 @@ export const BoxPaymentContainer = styled.div`
     justify-content: center;
     gap: 3rem;
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+    .TabsTrigger {
+      height: 4rem;
+    }
+
+    .TabsContent {
+      height: 20rem;
+      padding-top: 1.5rem;
+
+      img {
+        display: block;
+        margin-inline: auto;
+      }
+    }
+
+    .waiting-delivered {
+      height: 20rem;
+      gap: 2.5rem;
+      font-size: 1.125rem;
+    }
+
+  }
 `
 
 export const OrderForm = styled.form`
@@ -98,6 +125,20 @@ export const OrderForm = styled.form`
 
     input {
       width: 10.375rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+
+    gap: 1.75rem;
+
+    > div {
+      gap: 0.5rem;
+
+      input {
+        width: 9rem;
+      }
     }
   }
 `

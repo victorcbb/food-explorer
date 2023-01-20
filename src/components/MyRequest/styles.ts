@@ -20,4 +20,10 @@ export const MyRequestContainer = styled(Link)`
   &:hover {
     filter: brightness(140%);
   }
+
+  @media (max-width: 500px) {
+    width: 4rem;
+    height: 2.5rem;
+    gap: .25rem;
+  }
 `

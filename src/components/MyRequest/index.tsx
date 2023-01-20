@@ -8,8 +8,9 @@ export function MyRequest() {
 
   return (
     <MyRequestContainer to="/myorder">
-      <Receipt size={32} />
-      Meus Pedidos ({ cartQuantity })
+      <Receipt size={window.innerWidth >= 500 ? 32 : 28} />
+      {window.innerWidth >= 500 && "Meus Pedidos"}
+      ({cartQuantity})
     </MyRequestContainer>
   )
 }

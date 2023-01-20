@@ -10,6 +10,10 @@ export const DetailsContainer = styled.div`
     "header"
     "main"
     "footer";
+
+  @media (max-width: 500px) {
+    grid-template-rows: 4rem 1fr 7.75rem;
+  }
 `
 
 export const Content = styled.div`
@@ -20,19 +24,33 @@ export const Content = styled.div`
   height: calc(100vh - 228px);
 
   margin: 0 auto;
-  padding-block: 1.5rem;
+  padding: 1.5rem 1rem;
 
   > div {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 2.5rem;
 
     margin-top: 42px;
 
     > img {
-      width: 390px;
-      height: 390px;
+      width: 24.375rem;
+      height: 24.375rem;
     };
+  }
+
+  @media (max-width: 500px) {
+    height: 100%;
+
+    > div {
+      flex-direction: column;
+      gap: 1.5rem;
+
+      > img {
+        width: 20rem;
+        height: 20rem;
+      };
+    }
   }
 `
 
@@ -61,6 +79,26 @@ export const Infos = styled.div`
     align-items: center;
     gap: 1rem;
   }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 1.75rem;
+      text-align: center;
+    };
+
+    > span {
+      display: inline-block;
+      width: 100%;
+      font-size: 1rem;
+      text-align: center;
+    };
+
+    > div {
+      margin-top: 1rem;
+      gap: 1rem;
+      justify-content: center;
+    }
+  }
 `
 
 export const Includes = styled.section`
@@ -70,7 +108,7 @@ export const Includes = styled.section`
 
   margin-top: 2.75rem;
 
-  span {
+  > span {
     font-family: 'Roboto';
     font-size: 2rem;
     line-height: 160%;
@@ -79,11 +117,26 @@ export const Includes = styled.section`
     color: ${({ theme }) => theme["Blue-300"]};
   }
 
-  div {
+  > div {
     width: 13.75rem;
 
     display: flex;
     align-items: center;
     gap: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    gap: 1rem;
+    margin-top: 1.75rem;
+  
+    > span {
+      width: 9rem;
+      font-size: 1.5rem;
+    }
+
+    div {
+      width: 100%;
+      gap: 1rem;
+    }
   }
 `

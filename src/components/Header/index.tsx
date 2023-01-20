@@ -1,4 +1,4 @@
-import { SignOut } from "phosphor-react"
+import { HeartStraight, Receipt, SignOut } from "phosphor-react"
 
 import { Content, HeaderContainer, LogOut, SearchContent } from "./styles"
 import { MyRequest } from "../MyRequest"
@@ -21,17 +21,29 @@ export function Header() {
   return (
     <HeaderContainer>
       <Content>
-        <Link to ="/">
+        <Link to="/">
           <img src={logoImage} alt="losangolo azul" />
-          <strong>food explorer</strong>
+          {window.innerWidth >= 500 && <strong>food explorer</strong>}
         </Link>
 
         <SearchContent>
           {
             user.role === "ADMIN" ?
-            <Link to="/orderadmin">Todos pedidos</Link>
-            :
-            <Link to="#">Meus favorito</Link>
+              <Link to="/orderadmin">
+                {
+                  window.innerWidth >= 500 ?
+                    "Todos pedidos" :
+                    <Receipt size={28} />
+                }
+              </Link>
+              :
+              <Link to="#">
+                {
+                  window.innerWidth >= 500 ?
+                    "Meus favorito" :
+                    <HeartStraight size={28} />
+                }
+              </Link>
 
           }
           <SearchInpit />

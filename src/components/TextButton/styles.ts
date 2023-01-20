@@ -14,4 +14,8 @@ export const TextButtonContainer = styled.button`
   color: ${({ theme }) => theme["gray-200"]};
 
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    font-size: 1.125rem;
+  }
 `

@@ -28,6 +28,25 @@ export const SignUpContainer = styled.div`
       color: ${({ theme }) => theme.white};
     };
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+
+    div {
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      };
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: ${({ theme }) => theme.white};
+      };
+    }
+  }
 `
 
 export const Form = styled.form`
@@ -60,5 +79,9 @@ export const Form = styled.form`
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: 500px) {
+    border-radius: 0;
   }
 `

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   width: 100%;
+  overflow-y: auto;
 
   display: grid;
   grid-template-rows: 6.5rem 1fr 7.75rem;
@@ -10,6 +11,10 @@ export const HomeContainer = styled.div`
   "header"
   "main"
   "footer";
+
+  @media (max-width: 500px) {
+    grid-template-rows: 4rem 1fr 7.75rem;
+  }
 `
 
 export const Content = styled.main`
@@ -17,6 +22,7 @@ export const Content = styled.main`
 
   width: 70.75rem;
   min-height: 100vh;
+  overflow-y: hidden;
 
   margin: 0 auto 6.125rem;
 
@@ -42,6 +48,15 @@ export const Content = styled.main`
     &:hover {
       color: ${({ theme }) => theme["Blue-500"]};
     }
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+    h2 {
+      padding-left: 1rem;
+      font-size: 1.75rem;
+  }
   }
 `
 
@@ -85,6 +100,32 @@ export const Banner = styled.div`
       font-family: 'Poppins';
       line-height: 140%;
       margin-top: .5rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    height: 12rem;
+
+    margin: 3rem 0 2rem;
+    border-radius: 0;
+
+    justify-content: center;
+
+    img {
+      opacity: 0.3;
+    }
+
+    div {
+      padding-right: 0;
+      text-align: center;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: .875rem;
+      }
     }
   }
 `

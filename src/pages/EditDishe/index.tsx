@@ -141,35 +141,35 @@ export function EditDishe() {
     handleBack()
   }
 
-  useEffect(() => {
-    async function handleProductImage() {
-      try {
-        if (imageFile) {
-          const fileUploadForm = new FormData()
-          fileUploadForm.append("image", imageFile)
+  // useEffect(() => {
+  //   async function handleProductImage() {
+  //     try {
+  //       if (imageFile) {
+  //         const fileUploadForm = new FormData()
+  //         fileUploadForm.append("image", imageFile)
 
-          if (Array.isArray(products) && products.length > 0) {
-            console.log("aqui");
-            const product = products.reduce((a, b) => a.createdAt > b.createdAt ? a : b)
-            console.log(product);
+  //         if (Array.isArray(products) && products.length > 0) {
+  //           console.log("aqui");
+  //           const product = products.reduce((a, b) => a.createdAt > b.createdAt ? a : b)
+  //           console.log(product);
 
-            const response = await api.patch(`/products/image/${product.id}`, fileUploadForm)
-            product.image = response.data.image
+  //           const response = await api.patch(`/products/image/${product.id}`, fileUploadForm)
+  //           product.image = response.data.image
 
-            handleBack()
-          }
-        }
-      } catch (err: any) {
-        if (err.response) {
-          toast.error(err.response.data.message)
-        } else {
-          toast.error("Falha ao criar o produto.")
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-  }, [products])
+  //           handleBack()
+  //         }
+  //       }
+  //     } catch (err: any) {
+  //       if (err.response) {
+  //         toast.error(err.response.data.message)
+  //       } else {
+  //         toast.error("Falha ao criar o produto.")
+  //       }
+  //     } finally {
+  //       setIsLoading(false)
+  //     }
+  //   }
+  // }, [products])
 
   return (
     <EditDisheContainer>
