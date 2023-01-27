@@ -11,16 +11,20 @@ export const EditDisheContainer = styled.div`
     "header"
     "main"
     "footer";
+
+  @media (max-width: 500px) {
+    grid-template-rows: 4rem 1fr 7.75rem;
+  }
 `
 export const Content = styled.main`
   grid-area: main;
 
   width: 100%;
-  max-width: 1132px;
-  height: calc(100vh - 228px);
+  max-width: 70.75rem;
+  min-height: calc(100vh - 11.25rem);
 
   margin: 0 auto;
-  padding-block: 1.5rem;
+  padding: 1.5rem 1rem;
 
   h1 {
     margin-top: 1.5rem;
@@ -28,6 +32,13 @@ export const Content = styled.main`
     font-weight: 500;
     font-size: 2rem;
     line-height: 140%;
+  }
+
+  @media (max-width: 500px) {
+    h1 {
+      margin-top: 1rem;
+      font-size: 1.625;
+    }
   }
 `
 
@@ -91,7 +102,28 @@ export const Form = styled.form`
       opacity: 0.8;
       background: ${({ theme }) => theme["white-opacity-30"]};
       color: ${({ theme }) => theme["gray-100"]};
+    };
+
+    &:disabled:not(:hover) {
+      cursor: not-allowed;
     }
+  }
+
+  @media (max-width: 500px) {
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* div:first-child {
+      grid-template-columns: 14.3125rem 1fr 14.3125rem;
+    }
+
+    div:nth-child(2) {
+      grid-template-columns: 1fr 14.3125rem;
+    } */
   }
 `
 
@@ -102,6 +134,7 @@ export const InputFile = styled.div`
   gap: .5rem;
 
   label {
+    overflow-y: hidden;
     width: 100%;
     height: 3.25rem;
 
@@ -185,6 +218,10 @@ export const Ingredients = styled.section`
   font-family: 'Roboto', sans-serif;
   line-height: 100%;
   color: ${({ theme }) => theme.white};
+
+  > span {
+    overflow-y: hidden;
+  }
 
   > div {
     display: flex;

@@ -38,6 +38,8 @@ interface AuthContextType {
   filteredCartOfUser: ICartItems[]
   removeProductCard: (cartItemId: string) => void
   cleanCartItems: () => void
+  cartItems: ICartItems[]
+  loading: boolean
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -49,6 +51,7 @@ interface AuthProviderProps {
 function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<IData>({} as IData)
   const [search, setSearch] = useState("")
+  const [loading, setLoading] = useState(false)
   const [cartItems, setCartItems] = useState<ICartItems[]>(() => {
     const storedCartItems = localStorage.getItem("@foodexplorer:cartItems")
     if (storedCartItems) {
@@ -124,6 +127,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: IUser) {
     try {
+      setLoading(true)
       const response = await api.post("/authenticate", { email, password })
       const { user, token } = response.data as IData
 
@@ -137,6 +141,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       } else {
         toast.error("Não foi possível logar com o usuário.")
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -179,6 +185,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       filteredCartOfUser,
       removeProductCard,
       cleanCartItems,
+      cartItems,
+      loading
     }}>{children}</AuthContext.Provider>
   )
 }

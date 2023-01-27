@@ -31,4 +31,8 @@ export const IngredientItemContainer = styled.div<IProps>`
 
     cursor: pointer;
   }
+
+  @media (max-width: 500px) {
+    width: 10rem;
+  }
 `

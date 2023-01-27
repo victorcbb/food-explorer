@@ -2,14 +2,14 @@ import styled from "styled-components"
 
 export const CarouselContainer = styled.div`
   width: 100%;
-  height: 32rem;
+  height: 38rem;
   overflow-y: hidden;
   padding: 0 1rem;
 
   .swiper {
     width: 100%;
     height: 100%;
-    margin-top: 2.4688rem;
+    margin-top: 2rem;
   }
 
   .swiper-slide {
@@ -31,6 +31,10 @@ export const CarouselContainer = styled.div`
     -webkit-align-items: center;
     align-items: center;
   };
+
+  .swiper-wrapper {
+    width: max-content;
+  }
 
   .swiper-button-prev {
     width: 7.25rem;
@@ -75,6 +79,10 @@ export const CarouselContainer = styled.div`
 
     .swiper {
       margin-top: 0;
+    }
+
+    .swiper-wrapper {
+      width: max-content;
     }
   }
 `

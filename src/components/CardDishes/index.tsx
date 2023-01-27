@@ -18,7 +18,8 @@ export function CardDishes({ product }: CardDishesProps) {
   const [quantity, setQuantity] = useState(1)
   const { user } = useAuth()
   
-  const imageUrl = product.image ? `${api.defaults.baseURL}/files/${product.image}` : ""
+  const imageUrl = product.image && `${api.defaults.baseURL}/files/${product.image}`
+  
   const formatedPrice = Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
@@ -56,7 +57,7 @@ export function CardDishes({ product }: CardDishesProps) {
     <CardDishesContainer>
       <HeartStraight weight="regular" size={window.innerWidth >= 500 ? 32 : 28} />
       <button onClick={() => handleNavigate(product.id)}>
-        <img src={imageUrl} alt="" />
+        <img src={imageUrl} alt="imagem do produto" />
         <strong>{product.name} &gt;</strong>
         <p>{product.description}</p>
         <span>{formatedPrice}</span>

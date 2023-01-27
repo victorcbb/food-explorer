@@ -10,6 +10,10 @@ export const OrderAdminContainer = styled.div`
   "header"
   "main"
   "footer";
+
+  @media (max-width: 500px) {
+    grid-template-rows: 4rem 1fr 7.75rem;
+  }
 `
 
 export const Content = styled.main`
@@ -17,10 +21,18 @@ export const Content = styled.main`
 
   width: 100%;
   max-width: 70.75rem;
-  height: calc(100vh - 14.25rem);
+  min-height: calc(100vh - 11.25rem);
 
   margin: 0 auto;
   padding: 2.125rem 1rem 0;
+
+  @media (max-width: 500px) {
+    padding: 1.5rem 1rem 0;
+    
+    h1 {
+      font-size: 1.625rem;
+    }
+  }
 `
 
 export const TableWrapper = styled.div`
@@ -87,6 +99,39 @@ export const TableWrapper = styled.div`
 
   @media (max-width: 500px) {
     overflow-x: auto;
+
+    table {
+      width: 50rem;
+      thead {
+        tr {
+          th {
+            padding: 0.5rem 1.5rem;
+
+            &:nth-child(3) {
+              width: 20rem;
+            }
+          }
+        }
+      };
+      
+      tbody {
+        tr {
+          td {
+            height: 5rem;
+            border: 2px solid ${({ theme }) => theme["gray-800"]};
+            padding-inline: 1.5rem;
+    
+            &:nth-child(3) {
+              width: 20rem;
+            };
+
+            &:last-child {
+              width: 10rem;
+            }
+          }
+        }
+      }
+    }
   }
 `
 

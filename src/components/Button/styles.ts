@@ -39,5 +39,6 @@ export const ButtonContainer = styled.button<HTMLProps<HTMLButtonElement>>`
   @media (max-width: 500px) {
     width: 100%;
     height: 2.5rem;
+    font-size: 0.75rem;
   }
 `

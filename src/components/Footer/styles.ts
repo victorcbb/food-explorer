@@ -38,6 +38,7 @@ export const Content = styled.div`
     };
 
     strong {
+      overflow-y: hidden;
       font-weight: 700;
       font-size: 1.5625rem;
       line-height: 1;

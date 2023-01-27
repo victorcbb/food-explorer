@@ -20,7 +20,7 @@ export const Content = styled.div`
   grid-area: main;
 
   width: 100%;
-  max-width: 1132px;
+  max-width: 70.75rem;
   height: calc(100vh - 228px);
 
   margin: 0 auto;
@@ -45,7 +45,7 @@ export const Content = styled.div`
     > div {
       flex-direction: column;
       gap: 1.5rem;
-
+      
       > img {
         width: 20rem;
         height: 20rem;
@@ -55,6 +55,8 @@ export const Content = styled.div`
 `
 
 export const Infos = styled.div`
+  width: 37.5rem;
+  
   h1 {
     font-family: 'Poppins';
     font-weight: 500;
@@ -63,7 +65,6 @@ export const Infos = styled.div`
   };
 
   > span {
-    width: 37.5rem;
 
     font-family: 'Poppins';
     font-weight: 400;
@@ -81,6 +82,8 @@ export const Infos = styled.div`
   }
 
   @media (max-width: 500px) {
+    width: 100%;
+
     h1 {
       font-size: 1.75rem;
       text-align: center;
@@ -126,17 +129,13 @@ export const Includes = styled.section`
   }
 
   @media (max-width: 500px) {
+    justify-content: center;
     gap: 1rem;
     margin-top: 1.75rem;
   
     > span {
-      width: 9rem;
+      width: 6.5rem;
       font-size: 1.5rem;
-    }
-
-    div {
-      width: 100%;
-      gap: 1rem;
     }
   }
 `

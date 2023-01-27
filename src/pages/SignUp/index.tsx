@@ -22,28 +22,33 @@ export function SignUp() {
   function handleSignUp(event: FormEvent) {
     event.preventDefault()
 
+    setLoading(true)
+
     if (!name || !email || !password) {
+      setLoading(false)
       return toast.warn("Preencha todos os campos!")
     }
 
     if (/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+$/.test(name) === false) {
+      setLoading(false)
       return toast.error("Nome com caracteres inválidos.")
     }
 
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
+      setLoading(false)
       return toast.error("E-mail com caracteres inválidos.")
     }
 
     if (/^[A-Za-z0-9]+$/.test(password) === false) {
+      setLoading(false)
       return toast.error("Senha com caracteres inválidos.")
     }
 
     if (password.length < 3) {
+      setLoading(false)
       return toast.error("A senha deve ter ao menos 3 caracteres.")
     }
     
-    setLoading(true)
-
     api.post("/users", {
       name,
       email,
@@ -56,12 +61,12 @@ export function SignUp() {
       .catch(error => {
         if (error.response) {
           toast.error(error.response.data.message)
+          setLoading(false)
         } else {
           toast.error("Não foi possível cadastrar.")
+          setLoading(false)
         }
       })
-      
-      setLoading(false)
   }
 
   return (

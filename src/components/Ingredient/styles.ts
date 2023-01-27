@@ -9,6 +9,6 @@ export const IngredientContainer = styled.div`
 
   img {
     width: 3.75rem;
-    height: 3.75rem;
+    height: 100%;
   };
 `

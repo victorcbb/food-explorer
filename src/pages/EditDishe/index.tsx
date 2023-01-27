@@ -1,7 +1,7 @@
 import { CaretDown, UploadSimple } from "phosphor-react"
 import * as Select from '@radix-ui/react-select'
 import { useNavigate } from "react-router-dom"
-import { useState, FormEvent, ChangeEvent, useEffect } from "react"
+import { useState, FormEvent, ChangeEvent } from "react"
 
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
@@ -23,22 +23,6 @@ import {
 import { toast } from "react-toastify"
 import { api } from "../../services/api"
 
-interface Ingredients {
-  name: string
-  image: string
-}
-
-interface IProduct {
-  id: string
-  name: string
-  description: string
-  image: string
-  price: number
-  createdAt: string
-  ingredients: Ingredients[]
-  category: "main" | "dessert" | "drink"
-}
-
 export function EditDishe() {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
@@ -51,7 +35,6 @@ export function EditDishe() {
   const [imageFile, setImageFile] = useState(null)
 
   const [isLoading, setIsLoading] = useState(false)
-  const [products, setProducts] = useState<IProduct[]>([])
 
   const navigate = useNavigate()
 
@@ -118,15 +101,19 @@ export function EditDishe() {
         fileUploadForm.append("image", imageFile)
 
         if (Array.isArray(response.data) && response.data.length > 0) {
-          console.log("aqui");
           const product = response.data[response.data.length - 1]
-          console.log(product);
 
-          const newImage = await api.patch(`/products/image/${product.id}`, fileUploadForm)
+          const newImage = await api.patch(`/products/image/${product.id}`,
+            fileUploadForm,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
           product.image = newImage.data.image
         }
       }
-      setProducts(response.data)
 
     } catch (err: any) {
       if (err.response) {
@@ -140,36 +127,6 @@ export function EditDishe() {
 
     handleBack()
   }
-
-  // useEffect(() => {
-  //   async function handleProductImage() {
-  //     try {
-  //       if (imageFile) {
-  //         const fileUploadForm = new FormData()
-  //         fileUploadForm.append("image", imageFile)
-
-  //         if (Array.isArray(products) && products.length > 0) {
-  //           console.log("aqui");
-  //           const product = products.reduce((a, b) => a.createdAt > b.createdAt ? a : b)
-  //           console.log(product);
-
-  //           const response = await api.patch(`/products/image/${product.id}`, fileUploadForm)
-  //           product.image = response.data.image
-
-  //           handleBack()
-  //         }
-  //       }
-  //     } catch (err: any) {
-  //       if (err.response) {
-  //         toast.error(err.response.data.message)
-  //       } else {
-  //         toast.error("Falha ao criar o produto.")
-  //       }
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
-  // }, [products])
 
   return (
     <EditDisheContainer>
@@ -187,7 +144,8 @@ export function EditDishe() {
                 <input
                   type="file"
                   id="fileImage"
-                  onChange={(e: any) => setImageFile(e.target.files[0])}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setImageFile(e.currentTarget.files[0])}
+                  accept="image/png, image/jpeg"
                 />
               </label>
             </InputFile>

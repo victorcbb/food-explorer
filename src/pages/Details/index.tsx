@@ -24,7 +24,9 @@ export function Details() {
   const params = useParams()
   const navigate = useNavigate()
   const formatedPrice = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price / 100)
-  const imageUrl = product.image ? `${api.defaults.baseURL}/files/${product.image}` : ""
+  
+  const imageUrl = `${api.defaults.baseURL}/files/${product.image}`
+  
 
   function handleBack() {
     navigate(-1)
@@ -68,7 +70,10 @@ export function Details() {
         <Content>
           <TextButton onClick={handleBack} />
           <div>
-            <img src={imageUrl} alt="" />
+            {
+              imageUrl &&
+              <img src={imageUrl} alt={product.name} />
+            }
 
             <Infos>
               <h1>{product.name}</h1>
@@ -94,7 +99,8 @@ export function Details() {
                   <Button
                     title="incluir"
                     type="button"
-                    icon={<Receipt size={32} />}
+                    icon={<Receipt size={window.innerWidth > 500 ? 32 : 28} />}
+                    onClick={handleAddToCart}
                   />
                 </div>
               </Includes>

@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode } from "react"
+import { ReactNode } from "react"
 import { ButtonContainer } from "./styles"
 
 interface ButtonProps {

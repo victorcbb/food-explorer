@@ -1,6 +1,8 @@
 import styled from "styled-components"
 
 export const AmountContainer = styled.div`
+  width: 11rem;
+
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -24,7 +26,8 @@ export const AmountContainer = styled.div`
   }
 
   @media (max-width: 500px) {
-    gap: .75rem;
+    width: 7rem;
+    gap: .5rem;
 
     span {
       font-size: 1rem;

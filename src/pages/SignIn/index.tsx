@@ -12,9 +12,8 @@ import logoImage from '../../assets/logo.svg'
 export function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
 
-  const { signIn } = useAuth()
+  const { signIn, loading } = useAuth()
 
   function handleSingIn(event: FormEvent) {
     event.preventDefault()
@@ -34,10 +33,8 @@ export function SignIn() {
     if (password.length < 3) {
       return toast.error("Usuário e/ou senha inválidos.")
     }
-    setLoading(true)
     
     signIn({ email, password })
-    setLoading(false)
   }
 
   return (
