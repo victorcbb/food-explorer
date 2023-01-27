@@ -5,7 +5,9 @@
 ## Description
 
 food-explorer is a food delivery app, were a user must register first and then login to gain access. After that he will be able to select the products between main dishes, desserts and drinks, adding each item to the cart.
-It is also possible, as an ADMIN, to add new products on an exclusive page.
+It is also possible, as an ADMIN, to add new products and manage orders on an exclusive page.
+
+This web app is consuming this [API](https://github.com/victorcbb/api-food-explorer)
 
 ### Current Stack :technologist:
 - `Typescript`
@@ -35,3 +37,5 @@ $ npm install
 # development
 $ npm run dev
 ```
+
+Food Explorer is live on https://foodexplorer-rs.netlify.app/
