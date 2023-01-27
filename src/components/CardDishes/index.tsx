@@ -18,7 +18,7 @@ export function CardDishes({ product }: CardDishesProps) {
   const [quantity, setQuantity] = useState(1)
   const { user } = useAuth()
   
-  const imageUrl = product.image && `${api.defaults.baseURL}/files/${product.image}`
+  const imageUrl = product.image ? `${api.defaults.baseURL}/files/${product.image}` : ''
   
   const formatedPrice = Intl.NumberFormat('pt-BR', {
     style: 'currency',

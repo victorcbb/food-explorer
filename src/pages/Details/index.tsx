@@ -25,7 +25,7 @@ export function Details() {
   const navigate = useNavigate()
   const formatedPrice = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price / 100)
   
-  const imageUrl = `${api.defaults.baseURL}/files/${product.image}`
+  const imageUrl = product.image ? `${api.defaults.baseURL}/files/${product.image}` : ''
   
 
   function handleBack() {
