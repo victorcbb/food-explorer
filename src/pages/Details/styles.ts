@@ -77,7 +77,7 @@ export const Infos = styled.div`
     margin-top: 2rem;
 
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 1rem;
   }
 

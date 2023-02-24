@@ -72,7 +72,11 @@ export function Details() {
           <div>
             {
               imageUrl &&
-              <img src={imageUrl} alt={product.name} />
+              <img 
+                src={imageUrl} 
+                referrerPolicy="no-referrer" 
+                alt={product.name} 
+              />
             }
 
             <Infos>
